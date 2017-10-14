@@ -152,6 +152,7 @@ app.post("/api/registration", function(req, res) {
   } else if (!req.body.userid) {
     handleError(res, "Invalid Request", "Must provide valid user id", 400);
   }
+  console.log("All required parameters are checked.");
 
   // Validating access_token
   var userId = "";
@@ -176,10 +177,13 @@ app.post("/api/registration", function(req, res) {
       userId += body["userid"];
       expiresIn += body["expires_in"];
 
-      console.log(body);
+      console.log("Google Token Validation: Success");
+      console.log("user id given = " + req.body.userid + "user id retrieved = " + userId);
       if (userId == req.body.userid) {
-        res.status(201).json({"success": true});
+        console.log("Should exit with status code 200");
+        res.status(200).json({"success": true});
       }else {
+        console.log("Should exit with status code 400");
         res.status(400).json({"success": false, "error": "Invalid userid."});
       }
       });
