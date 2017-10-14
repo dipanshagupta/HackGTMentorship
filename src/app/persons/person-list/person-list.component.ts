@@ -23,9 +23,9 @@ export class PersonListComponent implements OnInit {
       .then((persons: Person[]) => {
         this.persons = persons.map((person) => {
           if (!person.interest) {
-            person.interest = {
+            person.interest = [{
               area_id = ''
-            }
+            }]
           }
           return person;
         });
