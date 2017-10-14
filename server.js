@@ -106,19 +106,19 @@ app.post("/api/registration", function(req, res) {
   
   // Input validation
   if (!req.body.email) {
-    handleError(res, "Invalid Request: Must provide email address in order to register.", 400);
+    handleError(res, "Invalid Request", "Must provide email address in order to register.", 400);
   } else if (!req.body.idtoken) {
-    handleError(res, "Invalid Request: Must provide access_token.", 400);
+    handleError(res, "Invalid Request","Must provide access_token.", 400);
   } else if (!req.body.interests) {
-    handleError(res, "Invalid Request: Must provide areas of interests.", 400);
+    handleError(res, "Invalid Request", "Must provide areas of interests.", 400);
   } else if (!req.body.role) {
-    handleError(res, "Invalid Request: Must provide a role to use the platform.", 400);
+    handleError(res, "Invalid Request", "Must provide a role to use the platform.", 400);
   } else if (!req.body.university) {
-    handleError(res, "Invalid Request: Must provide university name", 400);
+    handleError(res, "Invalid Request","Must provide university name", 400);
   } else if (!req.body.first_name) {
-    handleError(res, "Invalid Request: Must provide valid first name.", 400);
+    handleError(res, "Invalid Request","Must provide valid first name.", 400);
   } else if (!req.body.last_name) {
-    handleError(res, "Invalid Request: Must provide valid last name.", 400);
+    handleError(res, "Invalid Request", "Must provide valid last name.", 400);
   }
 
   // Validating access_token
@@ -132,7 +132,7 @@ app.post("/api/registration", function(req, res) {
 
   callback = function(response) {
     if (response.statusCode >= 400) {
-      handleError(res, "Invalid Token: Must provide a valid access_token.", response.statusCode);
+      handleError(res, "Invalid Token","Must provide a valid access_token.", response.statusCode);
     }
     var body = ''
     response.on('data', function (data) {
