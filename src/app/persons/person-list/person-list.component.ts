@@ -22,10 +22,9 @@ export class PersonListComponent implements OnInit {
       .getPersons()
       .then((persons: Person[]) => {
         this.persons = persons.map((person) => {
-          if (!person.phone) {
-            person.phone = {
-              mobile: '',
-              work: ''
+          if (!person.interest) {
+            person.interest = {
+              area_id = ''
             }
           }
           return person;
