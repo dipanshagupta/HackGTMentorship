@@ -21,8 +21,7 @@ import { AreaDetailsComponent } from './areas/area-details/area-details.componen
     MentorDetailsComponent,
     MentorListComponent,
     AreaListComponent,
-    AreaDetailsComponent,
-    AreaDetailComponent
+    AreaDetailsComponent
   ],
   imports: [
     BrowserModule
