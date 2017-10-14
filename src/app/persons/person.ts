@@ -1,14 +1,16 @@
 export class Person {
     _id?: string;
-    name: string;
+    userid: string;
+    first_name: string;
+    last_name: string;
     email: string;
     linkedin: string;
     twitter: string;
     role: string;
 
-    interest: {areaId: string;}
-
+    interest: { areaId: string;
+                level: string}
+                
     university: string;
-    password: string;
 }
 
