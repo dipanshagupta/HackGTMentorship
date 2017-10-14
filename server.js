@@ -107,7 +107,7 @@ app.post("/api/registration", function(req, res) {
   // Input validation
   if (!req.body.email) {
     handleError(res, "Invalid Request: Must provide email address in order to register.", 400);
-  } else if (!req.body.access_token) {
+  } else if (!req.body.idtoken) {
     handleError(res, "Invalid Request: Must provide access_token.", 400);
   } else if (!req.body.interests) {
     handleError(res, "Invalid Request: Must provide areas of interests.", 400);
@@ -126,7 +126,7 @@ app.post("/api/registration", function(req, res) {
   var expiresIn = "";
   var options = {
     host: "www.googleapis.com",
-    path: "/oauth2/v3/tokeninfo?access_token=" + res.body.access_token,
+    path: "/oauth2/v3/tokeninfo?id_token=" + res.body.idtoken,
     method: "POST"
   };
 
