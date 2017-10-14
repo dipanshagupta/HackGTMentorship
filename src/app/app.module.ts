@@ -33,6 +33,4 @@ import { AreaDetailsComponent } from './areas/area-details/area-details.componen
   providers: [],
   bootstrap: [AppComponent]
 })
-export default class AppModule { }
-
-platformBrowserDynamic().bootstrapModule(AppModule);
+export class AppModule { }
