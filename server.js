@@ -45,12 +45,6 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new contact
  */
 
-app.get("/api/students", function(req, res) {
-});
-
-app.post("/api/students", function(req, res) {
-});
-
 /*  "/api/contacts/:id"
  *    GET: find contact by id
  *    PUT: update contact by id
