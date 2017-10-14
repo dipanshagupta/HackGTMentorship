@@ -50,7 +50,9 @@ export class PersonListComponent implements OnInit {
       twitter: '',
       role: '',
   
-      interest: [{areaId: ''}],
+      interest: {
+          areaId: ''
+        },
   
       university: '',
       password: ''
