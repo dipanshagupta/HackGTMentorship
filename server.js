@@ -72,14 +72,14 @@ app.put("/api/persons/:id", function(req, res) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
-  db.collection(STUDENTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to update contact");
-    } else {
-      updateDoc._id = req.params.id;
-      res.status(200).json(updateDoc);
-    }
-  });
+    db.collection(STUDENTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc, function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to update contact");
+      } else {
+        updateDoc._id = req.params.id;
+        res.status(200).json(updateDoc);
+      }
+    });
 });
 
 app.delete("/api/persons/:id", function(req, res) {
@@ -116,7 +116,7 @@ app.post("/api/persons", function(req, res) {
     } else {
       res.status(201).json(doc.ops[0]);
     }
-  });
+  }); 
 });
 
 app.post("/api/registration", function(req, res) {
@@ -177,10 +177,17 @@ app.post("/api/registration", function(req, res) {
       console.log("Google Token Validation: Success");
       if (body["email_verified"] == 'true') {
         console.log("Should exit with status code 200");
-        res.status(200).json({"success": true});
+        var newPerson = req.body;
+        db.collection(STUDENTS_COLLECTION).insertOne(newPerson, function(err, doc) {
+          if (err) {
+            handleError(res, err.message, "Failed to create new person.");
+          } else {
+            res.status(200).json({"success": true});
+          }
+        });
       }else {
         console.log("Should exit with status code 400");
-        res.status(400).json({"success": false, "error": "Invalid userid."});
+        res.status(400).json({"success": false, "error": "Email verification failed."});
       }
       });
   };
