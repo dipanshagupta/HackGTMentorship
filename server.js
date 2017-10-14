@@ -145,9 +145,9 @@ app.post("/api/registration", function(req, res) {
     handleError(res, "Invalid Request", "Must provide a role to use the platform.", 400);
   } else if (!req.body.university) {
     handleError(res, "Invalid Request","Must provide university name", 400);
-  } else if (!req.body.first_name) {
+  } else if (!req.body.firstname) {
     handleError(res, "Invalid Request","Must provide valid first name.", 400);
-  } else if (!req.body.last_name) {
+  } else if (!req.body.lastname) {
     handleError(res, "Invalid Request", "Must provide valid last name.", 400);
   } else if (!req.body.userid) {
     handleError(res, "Invalid Request", "Must provide valid user id", 400);
