@@ -154,7 +154,7 @@ app.post("/api/registration", function(req, res) {
   var options = {
     host: "www.googleapis.com",
     path: "/oauth2/v3/tokeninfo?id_token=" + req.body.idtoken,
-    method: "POST"
+    method: "GET"
   };
 
   callback = function(response) {
