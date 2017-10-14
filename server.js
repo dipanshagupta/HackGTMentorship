@@ -66,26 +66,26 @@ app.put("/api/students/:id", function(req, res) {
 app.delete("/api/students/:id", function(req, res) {
 });
 
-app.get("/api/contacts", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
+app.get("/api/students", function(req, res) {
+  db.collection(STUDENTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
-      handleError(res, err.message, "Failed to get contacts.");
+      handleError(res, err.message, "Failed to get students.");
     } else {
       res.status(200).json(docs);
     }
   });
 });
 
-app.post("/api/contacts", function(req, res) {
-  var newContact = req.body;
+app.post("/api/students", function(req, res) {
+  var newStudent = req.body;
 
   if (!req.body.name) {
     handleError(res, "Invalid user input", "Must provide a name.", 400);
   }
 
-  db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
+  db.collection(STUDENTS_COLLECTION).insertOne(newStudent, function(err, doc) {
     if (err) {
-      handleError(res, err.message, "Failed to create new contact.");
+      handleError(res, err.message, "Failed to create new student.");
     } else {
       res.status(201).json(doc.ops[0]);
     }
