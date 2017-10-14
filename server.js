@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
+var https = require("https")
 var ObjectID = mongodb.ObjectID;
 
 var STUDENTS_COLLECTION = "students";
@@ -85,4 +86,64 @@ app.post("/api/students", function(req, res) {
       res.status(201).json(doc.ops[0]);
     }
   });
+});
+
+app.post("api/registration", function(req, res) {
+  // Registration fields:
+  //  # email 
+  //  # access_token
+  //  # interests 
+  //  # role 
+  //  # university 
+  //  # twitter [optional]
+  //  # linkedin [optional]
+  
+  // Input validation
+  if (!req.body.email) {
+    handleError(res, "Invalid Request: Must provide email address in order to register.", 400);
+  } else if (!req.body.access_token) {
+    handleError(res, "Invalid Request: Must provide access_token.", 400);
+  } else if (!req.body.interests) {
+    handleError(res, "Invalid Request: Must provide areas of interests.", 400);
+  } else if (!req.body.role) {
+    handleError(res, "Invalid Request: Must provide a role to use the platform.", 400);
+  } else if (!req.body.university) {
+    handleError(res, "Invalid Request: Must provide university name", 400);
+  }
+
+  // Validating access_token
+  var userId = "";
+  var expiresIn = "";
+  var options = {
+    host: "www.googleapis.com",
+    path: "/oauth2/v3/tokeninfo?access_token=" + res.body.access_token,
+    method: "POST"
+  };
+
+  callback = function(response) {
+    if (response.statusCode >= 400) {
+      handleError(res, "Invalid Token: Must provide a valid access_token.", response.statusCode);
+    }
+    var body = ''
+    response.on('data', function (data) {
+      body += data;
+    });
+  
+    response.on('end', function () {
+      body = JSON.parse(body);
+      userId += body["userid"];
+      expiresIn += body["expires_in"];
+
+      // Creating new user records in the db
+      db.collection(STUDENTS_COLLECTION).insertOne(newStudent, function(err, doc) {
+        if (err) {
+          handleError(res, err.message, "Failed to register new user.");
+        } else {
+          res.status(201).json(doc.ops[0]);
+        }
+      });
+    });
+  }
+
+  https.request(options, callback).end();
 });
