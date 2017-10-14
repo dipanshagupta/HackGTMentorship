@@ -134,7 +134,7 @@ app.post("/api/registration", function(req, res) {
   // Input validation
   console.log(req.body);
 
-  
+
   if (!req.body.email) {
     handleError(res, "Invalid Request", "Must provide email address in order to register.", 400);
   } else if (!req.body.idtoken) {
@@ -149,6 +149,8 @@ app.post("/api/registration", function(req, res) {
     handleError(res, "Invalid Request","Must provide valid first name.", 400);
   } else if (!req.body.last_name) {
     handleError(res, "Invalid Request", "Must provide valid last name.", 400);
+  } else if (!req.body.userid) {
+    handleError(res, "Invalid Request", "Must provide valid user id", 400);
   }
 
   // Validating access_token
@@ -175,15 +177,11 @@ app.post("/api/registration", function(req, res) {
       expiresIn += body["expires_in"];
 
       console.log(body);
-
-    //   // Creating new user records in the db
-    //   db.collection(STUDENTS_COLLECTION).insertOne(newStudent, function(err, doc) {
-    //     if (err) {
-    //       handleError(res, err.message, "Failed to register new user.");
-    //     } else {
-    //       res.status(201).json({"success": true});
-    //     }
-    //   });
+      if (userId == req.body.userid) {
+        res.status(201).json({"success": true});
+      }else {
+        res.status(400).json({"success": false, "error": "Invalid userid."});
+      }
       });
   };
   https.request(options, callback).end();
