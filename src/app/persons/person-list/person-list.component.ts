@@ -24,8 +24,8 @@ export class PersonListComponent implements OnInit {
         this.persons = persons.map((person) => {
           if (!person.interest) {
             person.interest = [{
-              areaId: '',
-              level: ''
+              areaId: 0,
+              level: 0
             }]
           }
           return person;
@@ -53,8 +53,8 @@ export class PersonListComponent implements OnInit {
       twitter: '',
       role: '',
       interest: [{
-          areaId: '',
-          level:''
+          areaId: 0,
+          level:0
         }],
       university: ''
     };

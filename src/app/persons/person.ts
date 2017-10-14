@@ -8,8 +8,8 @@ export class Person {
     twitter: string;
     role: string;
 
-    interest: [{ areaId: string;
-                level: string}]
+    interest: [{ areaId: number;
+                level: number}]
                 
     university: string;
 }
