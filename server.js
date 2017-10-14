@@ -126,7 +126,7 @@ app.post("/api/registration", function(req, res) {
   var expiresIn = "";
   var options = {
     host: "www.googleapis.com",
-    path: "/oauth2/v3/tokeninfo?id_token=" + res.body.idtoken,
+    path: "/oauth2/v3/tokeninfo?id_token=" + req.body.idtoken,
     method: "POST"
   };
 
