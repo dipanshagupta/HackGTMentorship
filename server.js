@@ -182,6 +182,7 @@ app.post("/api/registration", function(req, res) {
           if (err) {
             handleError(res, err.message, "Failed to create new person.");
           } else {
+            console.log("Created new person")
             res.status(200).json({"success": true});
           }
         });
