@@ -46,8 +46,8 @@ export class PersonListComponent implements OnInit {
   createNewPerson() {
     var person: Person = {
       userid:'',
-      first_name: '',
-      last_name:'',
+      firstname: '',
+      lastname:'',
       email: '',
       linkedin: '',
       twitter: '',

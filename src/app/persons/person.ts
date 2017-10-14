@@ -1,8 +1,8 @@
 export class Person {
     _id?: string;
     userid: string;
-    first_name: string;
-    last_name: string;
+    firstname: string;
+    lastname: string;
     email: string;
     linkedin: string;
     twitter: string;
