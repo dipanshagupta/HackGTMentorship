@@ -14,6 +14,28 @@
       <label for="person-email">Email</label>
       <input class="form-control" name="person-email" [(ngModel)]="person.email" placeholder="support@mlab.com"/>
     </div>
+    <div class="form-group">
+      <label for="person-linkedin">LinkedIn</label>
+      <input class="form-control" name="person-linkedin" [(ngModel)]="person.linkedin" placeholder="LinkedIn Account"/>
+    </div>
+    <div class="form-group">
+      <label for="person-twitter">Twitter</label>
+      <input class="form-control" name="person-twitter" [(ngModel)]="person.twitter" placeholder="Twitter Username"/>
+    </div>
+    <div class="form-group">
+      <label for="person-areaId">Area of Interest</label>
+      <input class="form-control" name="person-areaId" [(ngModel)]="person.areaId" placeholder="Interests"/>
+    </div>
+    
+    <div class="form-group">
+      <label for="person-role">Role</label>
+      <input class="form-control" name="person-role" [(ngModel)]="person.role" placeholder="Role"/>
+    </div>
+    <div class="form-group">
+      <label for="person-password">Password</label>
+      <input class="form-control" name="person-password" [(ngModel)]="person.password" placeholder="*********"/>
+    </div>
+
     <button class="btn btn-primary" *ngIf="!person._id" (click)="createPerson(person)">Create</button>
     <button class="btn btn-info" *ngIf="person._id" (click)="updatePerson(person)">Update</button>
     <button class="btn btn-danger" *ngIf="person._id" (click)="deletePerson(person._id)">Delete</button>
