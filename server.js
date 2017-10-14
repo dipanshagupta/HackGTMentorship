@@ -3,11 +3,15 @@ var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
-var STUDENTS_COLLECTION = "students";
-var MENTOR_COLLECTION = "mentors";
+var STUDENTS_COLLECTION = "persons";
 
 var app = express();
 app.use(bodyParser.json());
+
+// Create link to Angular build directory
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
@@ -51,36 +55,36 @@ function handleError(res, reason, message, code) {
  *    DELETE: deletes contact by id
  */
 
-app.get("/api/students/:id", function(req, res) {
+app.get("/api/persons/:id", function(req, res) {
 });
 
-app.put("/api/students/:id", function(req, res) {
+app.put("/api/persons/:id", function(req, res) {
 });
 
-app.delete("/api/students/:id", function(req, res) {
+app.delete("/api/persons/:id", function(req, res) {
 });
 
-app.get("/api/students", function(req, res) {
+app.get("/api/persons", function(req, res) {
   db.collection(STUDENTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
-      handleError(res, err.message, "Failed to get students.");
+      handleError(res, err.message, "Failed to get persons.");
     } else {
       res.status(200).json(docs);
-      //handleError(res, err.message, "Failed to get students.");
+      //handleError(res, err.message, "Failed to get persons.");
     }
   });
 });
 
-app.post("/api/students", function(req, res) {
-  var newStudent = req.body;
+app.post("/api/persons", function(req, res) {
+  var newPerson = req.body;
 
   if (!req.body.name) {
     handleError(res, "Invalid user input", "Must provide a name.", 400);
   }
 
-  db.collection(STUDENTS_COLLECTION).insertOne(newStudent, function(err, doc) {
+  db.collection(STUDENTS_COLLECTION).insertOne(newPerson, function(err, doc) {
     if (err) {
-      handleError(res, err.message, "Failed to create new student.");
+      handleError(res, err.message, "Failed to create new person.");
     } else {
       res.status(201).json(doc.ops[0]);
     }
