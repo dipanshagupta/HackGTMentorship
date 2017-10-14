@@ -175,7 +175,7 @@ app.post("/api/registration", function(req, res) {
     response.on('end', function () {
       body = JSON.parse(body);
       console.log("Google Token Validation: Success");
-      if (body["email_verified"]) {
+      if (body["email_verified"] == 'true') {
         console.log("Should exit with status code 200");
         res.status(200).json({"success": true});
       }else {
