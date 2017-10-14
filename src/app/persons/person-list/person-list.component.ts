@@ -22,12 +22,11 @@ export class PersonListComponent implements OnInit {
       .getPersons()
       .then((persons: Person[]) => {
         this.persons = persons.map((person) => {
-          if (!person.phone) {
-            person.phone = {
-              mobile: '',
-              work: ''
-            }
-          }
+          // if (!person.interest) {
+          //   person.interest = {
+          //     areaId = ''
+          //   }
+          // }
           return person;
         });
       });
@@ -51,7 +50,9 @@ export class PersonListComponent implements OnInit {
       twitter: '',
       role: '',
   
-      interest: [{area_id: ''}],
+      interest: {
+          areaId: ''
+        },
   
       university: '',
       password: ''

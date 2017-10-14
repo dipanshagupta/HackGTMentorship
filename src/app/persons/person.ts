@@ -6,7 +6,7 @@ export class Person {
     twitter: string;
     role: string;
 
-    interest: [{area_id: string;}]
+    interest: {areaId: string;}
 
     university: string;
     password: string;
