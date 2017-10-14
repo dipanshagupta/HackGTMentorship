@@ -65,7 +65,8 @@ app.get("/api/students", function(req, res) {
     if (err) {
       handleError(res, err.message, "Failed to get students.");
     } else {
-      res.status(200).json(docs);
+      handleError(res, err.message, "Failed to get students.");
+      // res.status(200).json(docs);
     }
   });
 });
