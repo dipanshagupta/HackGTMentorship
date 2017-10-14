@@ -96,6 +96,8 @@ app.post("api/registration", function(req, res) {
   // Registration fields:
   //  # email 
   //  # access_token
+  //  # first_name
+  //  # last_name
   //  # interests 
   //  # role 
   //  # university 
@@ -113,6 +115,10 @@ app.post("api/registration", function(req, res) {
     handleError(res, "Invalid Request: Must provide a role to use the platform.", 400);
   } else if (!req.body.university) {
     handleError(res, "Invalid Request: Must provide university name", 400);
+  } else if (!req.body.first_name) {
+    handleError(res, "Invalid Request: Must provide valid first name.", 400);
+  } else if (!req.body.last_name) {
+    handleError(res, "Invalid Request: Must provide valid last name.", 400);
   }
 
   // Validating access_token
@@ -138,16 +144,17 @@ app.post("api/registration", function(req, res) {
       userId += body["userid"];
       expiresIn += body["expires_in"];
 
-      // Creating new user records in the db
-      db.collection(STUDENTS_COLLECTION).insertOne(newStudent, function(err, doc) {
-        if (err) {
-          handleError(res, err.message, "Failed to register new user.");
-        } else {
-          res.status(201).json(doc.ops[0]);
-        }
-      });
-    });
-  }
+      console.log(body);
 
+    //   // Creating new user records in the db
+    //   db.collection(STUDENTS_COLLECTION).insertOne(newStudent, function(err, doc) {
+    //     if (err) {
+    //       handleError(res, err.message, "Failed to register new user.");
+    //     } else {
+    //       res.status(201).json({"success": true});
+    //     }
+    //   });
+      });
+  };
   https.request(options, callback).end();
 });
