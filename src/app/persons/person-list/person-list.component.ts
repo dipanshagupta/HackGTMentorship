@@ -22,11 +22,11 @@ export class PersonListComponent implements OnInit {
       .getPersons()
       .then((persons: Person[]) => {
         this.persons = persons.map((person) => {
-          // if (!person.interest) {
-          //   person.interest = {
-          //     areaId = ''
-          //   }
-          // }
+          if (!person.interest) {
+            person.interest = {
+              areaId: ''
+            }
+          }
           return person;
         });
       });
