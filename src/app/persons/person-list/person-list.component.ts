@@ -24,7 +24,7 @@ export class PersonListComponent implements OnInit {
         this.persons = persons.map((person) => {
           if (!person.interest) {
             person.interest = {
-              area_id = ''
+              areaId = ''
             }
           }
           return person;
@@ -50,7 +50,7 @@ export class PersonListComponent implements OnInit {
       twitter: '',
       role: '',
   
-      interest: [{area_id: ''}],
+      interest: [{areaId: ''}],
   
       university: '',
       password: ''
