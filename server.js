@@ -92,7 +92,7 @@ app.post("/api/persons", function(req, res) {
   });
 });
 
-app.post("api/registration", function(req, res) {
+app.post("/api/registration", function(req, res) {
   // Registration fields:
   //  # email 
   //  # access_token
