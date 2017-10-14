@@ -133,6 +133,7 @@ app.post("/api/registration", function(req, res) {
   
   // Input validation
   console.log(req.body);
+
   
   if (!req.body.email) {
     handleError(res, "Invalid Request", "Must provide email address in order to register.", 400);
