@@ -23,9 +23,10 @@ export class PersonListComponent implements OnInit {
       .then((persons: Person[]) => {
         this.persons = persons.map((person) => {
           if (!person.interest) {
-            person.interest = {
-              areaId: ''
-            }
+            person.interest = [{
+              areaId: '',
+              level: ''
+            }]
           }
           return person;
         });
@@ -44,18 +45,18 @@ export class PersonListComponent implements OnInit {
 
   createNewPerson() {
     var person: Person = {
-      name: '',
+      userid:'',
+      first_name: '',
+      last_name:'',
       email: '',
       linkedin: '',
       twitter: '',
       role: '',
-  
-      interest: {
-          areaId: ''
-        },
-  
-      university: '',
-      password: ''
+      interest: [{
+          areaId: '',
+          level:''
+        }],
+      university: ''
     };
 
     // By default, a newly-created person will have the selected state.

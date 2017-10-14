@@ -6,9 +6,17 @@
 </div>
 <div *ngIf="person" class="row">
   <form class="col-md-12">
+      <div class="form-group">
+          <label for="person-userid">First Name</label>
+          <input class="form-control" name="person-userid" [(ngModel)]="person.userid" placeholder="Userid"/>
+        </div>
     <div class="form-group">
-      <label for="person-name">Name</label>
-      <input class="form-control" name="person-name" [(ngModel)]="person.name" placeholder="Name"/>
+      <label for="person-firstname">First Name</label>
+      <input class="form-control" name="person-firstname" [(ngModel)]="person.firstname" placeholder="First-Name"/>
+    </div>
+    <div class="form-group">
+      <label for="person-lastname">Last Name</label>
+      <input class="form-control" name="person-lastname" [(ngModel)]="person.lastname" placeholder="Last-Name"/>
     </div>
     <div class="form-group">
       <label for="person-email">Email</label>
@@ -19,6 +27,10 @@
       <input class="form-control" name="person-linkedin" [(ngModel)]="person.linkedin" placeholder="LinkedIn Account"/>
     </div>
     <div class="form-group">
+      <label for="person-role">Role</label>
+      <input class="form-control" name="person-role" [(ngModel)]="person.role" placeholder="Role"/>
+    </div>
+    <div class="form-group">
       <label for="person-twitter">Twitter</label>
       <input class="form-control" name="person-twitter" [(ngModel)]="person.twitter" placeholder="Twitter Username"/>
     </div>
@@ -26,14 +38,9 @@
       <label for="person-areaId">Area of Interest</label>
       <input class="form-control" name="person-areaId" [(ngModel)]="person.areaId" placeholder="Interests"/>
     </div>
-    
     <div class="form-group">
-      <label for="person-role">Role</label>
-      <input class="form-control" name="person-role" [(ngModel)]="person.role" placeholder="Role"/>
-    </div>
-    <div class="form-group">
-      <label for="person-password">Password</label>
-      <input class="form-control" name="person-password" [(ngModel)]="person.password" placeholder="*********"/>
+      <label for="person-level">Level of Expertise</label>
+      <input class="form-control" name="person-level" [(ngModel)]="person.level" placeholder="Level"/>
     </div>
 
     <button class="btn btn-primary" *ngIf="!person._id" (click)="createPerson(person)">Create</button>
